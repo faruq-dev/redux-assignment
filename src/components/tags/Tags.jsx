@@ -8,7 +8,6 @@ export default function Tags(){
     useEffect(()=>{
         dispatch(fetchTags());
     },[dispatch]);
-    console.log(tags)
     return (
         <section>
             <div

@@ -1,24 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSearchTerm } from "../../features/filter/filterSlice";
 
 export default function Search(){
     const [input, setInput] = useState('');
+    // console.log(input);
     const dispatch = useDispatch();
-    const handleSubmit = (e) => {
+    useEffect(()=>{
+        if(input) {
+            dispatch(setSearchTerm(input))
+        }
+    }, [dispatch, input]);
+
+    const handleSearch = (e) => {
         e.preventDefault();
-        dispatch(setSearchTerm(input))
+        setInput(e.target.value)
     }
     return (
-        <form onSubmit={handleSubmit} >
+        <div >
             <input
                 className="outline-none border-none mr-2"
                 type="search"
                 name="search"
                 placeholder="Search"
                 value={input}
-                onChange={(e)=>setInput(e.target.value)}
+                onChange={ handleSearch }
             />
-        </form>
+        </div>
     )
 }

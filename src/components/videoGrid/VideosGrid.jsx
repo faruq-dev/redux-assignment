@@ -1,14 +1,19 @@
 import { useDispatch, useSelector } from "react-redux"
 import VideoGridItem from "./VideoGridItem"
 import { fetchVideos } from "../../features/videos/videosSlice";
-import { useEffect } from "react";
+import { useEffect} from "react";
 export default function Videos(){
     const {videos, loading, error} = useSelector(state=>state.videos);
+
     const {tags, search} = useSelector(state=>state.filter);
+
     const dispatch = useDispatch();
+
     useEffect(()=>{
+        console.log(search);
         dispatch(fetchVideos({tags, search}));
     },[dispatch, tags, search]);
+
     let content;
     if(loading) content = <div>Loading</div>;
     if(!loading && error) content = <div className="col-span-12">{error}</div>
