@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Like from "../../assets/like.svg";
-import UnLike from "../../assets/unlike.svg";
+// import UnLike from "../../assets/unlike.svg";
+import { AiFillDislike } from "react-icons/ai";
+import { AiOutlineDislike } from "react-icons/ai";
+import { AiFillLike } from "react-icons/ai";
+import { AiOutlineLike } from "react-icons/ai";
 export default function VideoLikeUnlike({ likes, dislikes }) {
   const [likeCount, setLikeCount] = useState(likes);
   const [isLiked, setIsLiked] = useState(false);
@@ -11,6 +15,10 @@ export default function VideoLikeUnlike({ likes, dislikes }) {
   const handleLike = () => {
     setLikeCount(likeCount + 1);
     setIsLiked(!false);
+    if (isUnliked) {
+      setUnlikeCount(unlikeCount - 1);
+      setIsUnliked(!true);
+    }
     if (isLiked) {
       setLikeCount(likeCount - 1);
       setIsLiked(!true);
@@ -20,6 +28,10 @@ export default function VideoLikeUnlike({ likes, dislikes }) {
   const handleUnlike = () => {
     setUnlikeCount(unlikeCount + 1);
     setIsUnliked(!false);
+    if (isLiked) {
+      setLikeCount(likeCount - 1);
+      setIsLiked(!true);
+    }
     if (isUnliked) {
       setUnlikeCount(unlikeCount - 1);
       setIsUnliked(!true);
@@ -30,7 +42,7 @@ export default function VideoLikeUnlike({ likes, dislikes }) {
       <div className="flex gap-1">
         <div className="shrink-0">
           <button onClick={handleLike}>
-            <img className="w-5 block" src={Like} alt="Like" />
+            {isLiked ? (<AiFillLike size={22}/>) : (<AiOutlineLike size={22}/>)}
           </button>
         </div>
         <div className="text-sm leading-[1.7142857] text-slate-600">
@@ -39,7 +51,9 @@ export default function VideoLikeUnlike({ likes, dislikes }) {
       </div>
       <div className="flex gap-1">
         <div className="shrink-0">
-          <button onClick={handleUnlike}><img className="w-5 block" src={UnLike} alt="Unlike" /></button>
+          <button onClick={handleUnlike}>
+            {isUnliked ? (<AiFillDislike size={22}/>) : (<AiOutlineDislike size={22}/>)}
+          </button>
         </div>
         <div className="text-sm leading-[1.7142857] text-slate-600">
           {unlikeCount}
