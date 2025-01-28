@@ -10,7 +10,6 @@ export default function Videos(){
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        console.log(search);
         dispatch(fetchVideos({tags, search}));
     },[dispatch, tags, search]);
 
@@ -19,7 +18,7 @@ export default function Videos(){
     if(!loading && error) content = <div className="col-span-12">{error}</div>
     if(!loading && videos.length > 0){
         content = videos.map(video=><VideoGridItem key={video.id} video={video}/>)
-    } 
+    }
     return (
         <section className="pt-12">
             <section className="pt-12">
