@@ -2,9 +2,9 @@ import VideoLikeUnlike from "./VideoLikeUnlike";
 import VideoPlayer from "./VideoPlayer";
 export default function VideoDescription({video}){
     // const {video, loading, error} = useSelector(state=>state.video);
-    const {title, link, description, date} = video;
-    console.log('video description')
-    console.log(video)
+    const {title, link, description, date, likes, dislikes} = video;
+    // console.log('video description')
+    // console.log(likes, dislikes)
     return (
         <div className="col-span-full w-full space-y-8 lg:col-span-2">
             <VideoPlayer videoTitle={title} videoLink={link} />
@@ -24,7 +24,7 @@ export default function VideoDescription({video}){
                         Uploaded on {date}
                     </h2>
 
-                    <VideoLikeUnlike />
+                    <VideoLikeUnlike likes={likes} dislikes={dislikes} />
                 </div>
 
                 <div

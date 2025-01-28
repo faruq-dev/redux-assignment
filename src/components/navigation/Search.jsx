@@ -14,12 +14,13 @@ export default function Search() {
       if (input) {
         dispatch(setSearchTerm(input));
         navigate("/");
+        console.log(input);
       };
     }, 500);
 
-    return () => {
-      clearTimeout(handler);
-    }
+    // return () => {
+    //   clearTimeout(handler);
+    // }
   }, [dispatch, input, navigate]);
 
   const handleSearch = (e) => {

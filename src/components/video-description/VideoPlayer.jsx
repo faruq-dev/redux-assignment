@@ -6,7 +6,7 @@ export default function VideoPlayer({videoTitle, videoLink}){
             src={videoLink}
             title={videoTitle}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
         ></iframe>
     )
 }

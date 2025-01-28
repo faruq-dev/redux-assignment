@@ -17,7 +17,7 @@ export default function RelatedVideoList({currentVideoId, tags}){
     
     
         if(!loading && !error && !relatedVideos?.length === 0) content = <div className="col-span-12">No related video found!</div>;
-        console.log(relatedVideos.id)
+        // console.log(relatedVideos.id)
         if(!loading && !error && relatedVideos?.length > 0){
             content = relatedVideos.map((video)=> (
                 <RelatedVideoListItem key={video.id} video={video} />

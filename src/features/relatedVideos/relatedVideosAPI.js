@@ -7,10 +7,10 @@ export const getRelatedVideos = async({tags, id})=>{
     let limit = 5
     let queryString = tags.map((tag) => `tags_like=${tag}`).join("&") + `&id_ne=${id}&_limit=${limit}`;
     const response = await axios.get(`/videos?${queryString}`);
-    console.log(queryString);
+    // console.log(queryString);
     
     if(response.data.length > 0){
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     }else{
       const resetResponse = await axios.get(`/videos?id_ne=${id}&_limit=${limit}`);
